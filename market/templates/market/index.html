@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'market/dashboard.css' %}">
+    <title>MarketFlow Dashboard</title>
+</head>
+<body data-symbol="{{symbol}}">
+    {%block content%}
+    <main class="dashboard-container">
+        <nav>
+            <button class="assets-btn" onclick="switchMarket('SP500')">SP500</button>
+            <button class="assets-btn" onclick="switchMarket('ORO')">ORO</button>
+        </nav>
+        <div class="stats-grid">
+            <div class="stats-card">
+                <div id="active-symbol" class="stat-value"></div>
+            </div>
+            <div class="stats-card" id="card-price">
+                <div class="stats-label">Price (USD)</div>
+                <div id="price" class="stats-value">--.--</div>
+            </div>
+            <div class="stats-card">
+                <div class="stats-label">Trend</div>
+                <div id="trend" class="stats-value">--</div>
+            </div>
+        </div>
+        <div class="chart">
+            <canvas id="marketchart" height="200"></canvas>
+        </div>
+        
+    </main>
+    
+    {%endblock%}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="{% static 'market/api.js' %}"></script>
+    <script src="{% static 'market/dashboard.js' %}"></script>
+    <script src="{% static 'market/ui.js' %}"></script>
+</body>
+
+</html>
